@@ -9,14 +9,10 @@ function xdot = f1(t,y)
   xdot = y;
 endfunction
 
-f2 = inline('-y.^2+t','t','y');
+tval = linspace(-4,2,31);
+yval = linspace(-2,2,31);
 
-#f = @(t,y) -y^2+t;
-
-tval = -4:.2:2;
-yval = -2:.2:2;
-
-slopefield("f1", tval, -2:.2:2)
+slopefield("f1", tval, yval)
 
 hold on;
 
