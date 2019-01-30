@@ -3,16 +3,21 @@
 #
 # Copyright 2015 2016 2017 2018 by John Gambini
 #
-f1 = inline('x.^2 + y ./ x','x','y');
+close all; clc; clear all;
+
+function xdot = f(x,y)
+  xdot = x.^2 + y ./ x;
+endfunction
+
 f2 = inline('x.^3 ./ 2 - x');
 f3 = inline('x.^3/2');
 f4 = inline('x.^3/2 + x');
 
-x = y = [-4.0:0.5:4.0];
+xvals = yvals = [-4.0:0.5:4.0];
+
+slopefield("f", xvals, yvals);
 
 hold on
-
-dirfield(f1, x, y);
 
 x = y = [-4.0:0.25:4.0];
 

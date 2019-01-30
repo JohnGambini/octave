@@ -3,11 +3,18 @@
 #
 # Copyright 2015 2016 2017 2018 by John Gambini
 #
-t = linspace(0,20,100);
+close all; clc; clear all;
+
+t = linspace(0.001,100,21);
+
 function x_prime = f(x,t);
-x_prime = t/x;
+  x_prime = t./x;
 endfunction
 
-x_0 = 2;
+slopefield("f",t,t);
 
-y = lsode("f", x_0, t)
+hold on;
+
+[x,y] = ode45("f", t, 0.001 );
+plot(x,y,'linewidth',3,'b');
+

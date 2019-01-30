@@ -3,31 +3,38 @@
 #
 # Copyright 2015 2016 2017 2018 by John Gambini
 #
-f1 = inline('y-x.^2','x','y'); 
+close all; clc; clear all;
+
+function xdot = f(x,y)
+  xdot = 1+x-y;
+endfunction
+
 f2 = @(X,Y)sqrt(Y^2+X^2);
 g = inline('t.*y.^2','t','y');
 f = @(t,y)t.*y^2;
 
-x = y = [-2:0.25:2];
+xvals = yvals = linspace(-2,2,21);
+
+slopefield("f", xvals, yvals);
 
 hold on;
 
-dirfield(f1, x, y);
-
-x = y = [-2:0.25:2];
+x = y = linspace(-2,2,41);
 
 [X1,Y1] = meshgrid(x,y);
-DY = f1(X1,Y1);
+DY = f(X1,Y1);
   
-contour(x,y,DY,[-1 0 1],"linewidth", 3);
+#contour(x,y,DY,[-1,-0.5,0.5,1],"linewidth", 3);
+
+[t,y] = ode45("f", x, 2 );
+plot(t, y, "linewidth", 2 );
+
+[t,y] = ode45("f", x, 0 );
+plot(t,y, "linewidth", 2 );
+
+[t,y] = ode45("f", x, -4 );
+plot(t,y, "linewidth", 2 );
 
 
-z = lsode("g",2, x );
-
-plot(x, z, "linewidth", 2 );
-%plot(-4:0.2:4,0, "linewidth", 2 );
-%plot(-4:0.2:4,(-4:0.2:4), "linewidth", 2 );
-
-hold off
 
 
