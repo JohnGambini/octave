@@ -2,21 +2,24 @@
 #
 # Copyright 2015 2016 2017 2018 by John Gambini
 #
-f1 = inline('y-x.^2','x','y');
-f2 = @(y,x)y-x.^2;
-x = y = linspace(-4,4,25);
+clear all; clc; close all;
+
+function xdot = f(x,y)
+  xdot = y-x.^2;
+endfunction
+
+xvals = yvals = linspace(-4,4,25);
+
+slopefield("f", xvals, yvals);
 
 hold on;
 
-dirfield(f1, x, y);
+xvals = yvals = linspace(-4,4,45);
 
-x = y = linspace(-4,4,45);
+[X1,Y1] = meshgrid(xvals,yvals);
+DY = f(X1,Y1);
 
-
-[X1,Y1] = meshgrid(x,y);
-DY = f1(X1,Y1);
-
-contour( x, y, DY, [-10 -8 -6 -4 -2 0 2 4 6 8 10], "linewidth", 3);
+contour( xvals, yvals, DY, [-6 -4 -2 0 2 4 6], "linewidth", 3);
 
 %x = y = linspace(-4,4,50);
 
