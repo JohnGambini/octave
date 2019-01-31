@@ -22,6 +22,3 @@ hold on;
 [x,y] = ode45("f",xvals,0.01);
 plot(x,y,'linewidth',2,'b');
 
-
-
-
