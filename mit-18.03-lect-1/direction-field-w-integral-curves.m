@@ -2,16 +2,19 @@
 #
 # Copyright 2015 2016 2017 2018 by John Gambini
 #
-f1 = inline('y-x.^2','x','y');
-f2 = @(y,x)y-x.^2;
-x = y = linspace(-4,4,25);
+close all; clear all; clc;
+
+function xdot = f1(x,y)
+  xdot = y-x.^2;
+endfunction
+
+xvals = yvals = linspace(-4,4,25);
+
+slopefield("f1", xvals, yvals);
 
 hold on;
 
-dirfield(f1, x, y);
-
 x = y = linspace(-4,4,45);
-
 
 [X1,Y1] = meshgrid(x,y);
 DY = f1(X1,Y1);
