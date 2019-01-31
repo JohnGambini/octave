@@ -22,4 +22,4 @@ plot(x,y,'linewidth',2);
 [x,y] = ode45("f1",tval,-0.02);
 plot(x,y,'linewidth',2);
 
-print -dpng dirfield-example.png
+print -dpng slopefield-example.png
