@@ -9,7 +9,7 @@ function xdot = f1(t,y)
   xdot = y-t.^2;
 endfunction
 
-tval = yval = linspace(-4,4,21);
+tval = yval = linspace(-4,4,27);
 
 slopefield("f1", tval, yval);
 
@@ -26,4 +26,5 @@ plot(x,y,'linewidth',2,'b');
 [x,y] = ode45("f1",tval,9.9710);
 plot(x,y,'linewidth',2,'b');
 
-#print -dpng y-x2.png
+print -dpng y-x2.png
+
